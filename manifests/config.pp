@@ -1,7 +1,7 @@
 class storm::config (
-    $zookeeper_servers = [ 'localhost' ],
-    $nimbus_host = undef,
-    $supervisor_slots = [ 6700, 6701, 6702, 6703 ],
+    $zookeeper_servers = 10.128.36.86,
+    $nimbus_host = 10.128.36.86,
+    $supervisor_slots = 6700,
     $worker_mem = 1024,
     $ui_port = 8080
 ) {
