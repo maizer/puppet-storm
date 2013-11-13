@@ -37,16 +37,10 @@ class storm::redhat
     package { 'storm':
     	ensure		=> '0.8.2-1.el6',
     	provider	=> rpm,
-    	source		=> 'https://dl.dropbox.com/u/25821613/storm/storm-0.8.2-1.el6.x86_64.rpm',
+    	source		=> 'https://www.dropbox.com/s/fl4kr7w0oc8ihdw/storm-0.8.2.zip',
     	require		=> [Package['zeromq'], Package['jzmq'], Package['zeromq-devel'], Package['jzmq-devel'], Package['unzip']]
-    }
-
-    package { 'storm-service':
-    	ensure		=> '0.8.2-1.el6',
-    	provider	=> rpm,
-    	source		=> 'https://dl.dropbox.com/u/25821613/storm/storm-service-0.8.2-1.el6.x86_64.rpm',
-    	require		=> [Package['storm']]
     }
 
 
 }
+include storm::redhat
