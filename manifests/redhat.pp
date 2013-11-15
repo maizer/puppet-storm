@@ -34,6 +34,37 @@ class storm::redhat
     }
 
 
+    file{ "/app/home":
+	ensure  => "directory"
+    }
+    
+
+    group{ "storm":
+		gid => 53001
+    }   
+
+    user { "storm":
+	  home    => "/app/home/storm",
+	  shell   => "/bin/bash",
+	  uid     => 53001,
+	  gid => 53001,
+	  managehome => 'true',
+	  require => Group[storm]
+	 } 
+    file{ "/app/home/storm":
+	ensure => "directory",
+	owner => "storm",
+	group => "storm",
+	mode => 700
+    }
+
+
+    exec { "zookeeper" : 
+	command => "/usr/bin/wget https://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/cloudera-cdh4.repo",
+	path =>  "/etc/yum.repos.d/cloudera-cdh4.repo",
+	creates => "/etc/yum.repos.d/cloudera-cdh4.repo"
+    }
 
 }
+
 include storm::redhat
